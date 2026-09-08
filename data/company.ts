@@ -86,7 +86,7 @@ export const company: CompanyConfig = {
   governingLawState: "Karnataka",
 
   /** Production URL. Used for canonical URLs, sitemap and Open Graph tags. */
-  siteUrl: "https://www.truefleet.in",
+  siteUrl: "https://true-fleet.vercel.app",
 
   /**
    * TODO: add profile URLs once the accounts exist. Empty entries are hidden,
