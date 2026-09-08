@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   TrueFleet design system
+
+   A deliberately narrow palette: white and a cool off-white for surfaces,
+   near-black for text, a deep navy as the brand colour, and a single brass
+   accent used only for small signals. Type carries the identity, so the
+   scale below is doing most of the design work.
+   ========================================================================== */
+
+@theme {
+  /* Surfaces */
+  --color-canvas: #ffffff;
+  --color-paper: #f4f5f6;
+  --color-paper-deep: #eceef0;
+
+  /* Brand */
+  --color-navy: #12283f;
+  --color-navy-deep: #0b1b2b;
+  --color-navy-soft: #1d3a56;
+
+  /* Text */
+  --color-ink: #0c1116;
+  --color-graphite: #384552;
+  --color-muted: #616f7d;
+  --color-faint: #646f7b;
+
+  /* Lines */
+  --color-line: #e3e6e9;
+  --color-line-strong: #cfd5db;
+
+  /* Accent: brass. Graphic use only, except signal-ink which is safe for text. */
+  --color-signal: #a9762f;
+  --color-signal-ink: #7e5518;
+  --color-signal-soft: #f3ead9;
+
+  /* Type */
+  --font-display: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --text-display-1: clamp(2.6rem, 1.4rem + 4.6vw, 5rem);
+  --text-display-1--line-height: 1.04;
+  --text-display-1--letter-spacing: -0.033em;
+  --text-display-1--font-weight: 600;
+
+  --text-display-2: clamp(2rem, 1.35rem + 2.6vw, 3.25rem);
+  --text-display-2--line-height: 1.1;
+  --text-display-2--letter-spacing: -0.028em;
+  --text-display-2--font-weight: 600;
+
+  --text-display-3: clamp(1.45rem, 1.2rem + 1vw, 1.95rem);
+  --text-display-3--line-height: 1.18;
+  --text-display-3--letter-spacing: -0.022em;
+  --text-display-3--font-weight: 600;
+
+  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+
+  /* Easing used for every transition on the site */
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Nothing on this site should ever scroll sideways. */
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* One focus treatment, used everywhere, always visible on keyboard. */
+  :focus-visible {
+    outline: 2px solid var(--color-navy);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-navy);
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  /* Page gutter. One rule, so every section lines up down the page. */
+  .container-page {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-page {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Body copy inside long-form legal pages. */
+  .prose-legal {
+    color: var(--color-graphite);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .prose-legal h2 {
+    color: var(--color-ink);
+    font-size: 1.375rem;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    margin-top: 3rem;
+    margin-bottom: 0.875rem;
+    scroll-margin-top: 7rem;
+  }
+
+  .prose-legal h3 {
+    color: var(--color-ink);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-legal p {
+    margin-bottom: 1rem;
+    max-width: 68ch;
+  }
+
+  .prose-legal ul {
+    margin-bottom: 1.25rem;
+    max-width: 68ch;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .prose-legal li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-legal li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    width: 5px;
+    height: 1px;
+    background-color: var(--color-line-strong);
+  }
+
+  .prose-legal a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-line-strong);
+  }
+
+  .prose-legal a:hover {
+    text-decoration-color: var(--color-signal);
+  }
+
+  .prose-legal strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Motion
+
+   Reveals are opt in through the Reveal component. Everything is a short
+   fade with a small translate, and all of it is switched off for anyone who
+   asks their system for reduced motion.
+   -------------------------------------------------------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s var(--ease-out-soft),
+    transform 0.7s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
